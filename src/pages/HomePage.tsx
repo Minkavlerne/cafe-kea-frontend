@@ -1,6 +1,7 @@
 import About from "../components/About";
 import OpeningHours from "../components/OpeningHours";
 import picture from "../assets/61f8D9QOOhWtzfXN43Bg--1--hfoyu.jpg";
+import Menu from "../components/Menu";
 
 export default function HomePage() {
     return (
@@ -12,6 +13,9 @@ export default function HomePage() {
                 </div>
                 <div className="absolute right-20 bottom-28">
                     <OpeningHours />
+                </div>
+                <div className="absolute left-10 top-[720px] w-2/6">
+                    <Menu />
                 </div>
             </div>
         </>
