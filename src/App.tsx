@@ -1,13 +1,11 @@
 import  Navbar from './components/NavBar';
+import HomePage from "./pages/HomePage";
 
-function App() {
-    
-
-    return (
-        <>
-           <Navbar />
-        </>
-    );
+export default function App() {
+  return (
+    <div>
+     <Navbar />
+     <HomePage />
+    </div>
+  );
 }
-
-export default App;
