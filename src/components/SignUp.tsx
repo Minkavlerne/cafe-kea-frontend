@@ -1,5 +1,6 @@
 import { useState } from "react";
 import picture from "../assets/61f8D9QOOhWtzfXN43Bg--1--hfoyu.jpg";
+import { useNavigate } from "react-router-dom";
 
 interface User {
   email: string;
@@ -13,6 +14,7 @@ const formUser = {
 
 export default function SignUp() {
   const [user, setUser] = useState<User>(formUser);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +26,12 @@ export default function SignUp() {
       body: JSON.stringify(user),
     });
     console.log(newUser);
+
+    window.alert("User created");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
 
   return (
