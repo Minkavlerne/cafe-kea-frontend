@@ -9,8 +9,8 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
-      <HomePage />
     </div>
   );
 }
