@@ -15,9 +15,10 @@ export default function Menu() {
             {coffee &&
                 coffee.map((c) => {
                     return (
-                        <div key={c.id}>
+                        <div className="text-center flex justify-between p-2" key={c.id}>
                             <h2>{c.name}</h2>
-                            <p>{c.price}</p>
+                            <p> ................................................... </p>
+                            <p>{c.price} kr.</p>
                         </div>
                     );
                 })}
