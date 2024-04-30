@@ -10,8 +10,8 @@ export default function Menu() {
     }, []);
 
     return (
-        <div className="bg-filler-kea text-text-kea  p-4">
-            <h1>Menu</h1>
+        <div className="bg-background-kea text-text-kea p-4 ">
+            <h1 className="text-center text-[30px] font-bold">Menu</h1>
             {coffee &&
                 coffee.map((c) => {
                     return (
