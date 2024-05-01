@@ -1,21 +1,15 @@
-import { useEffect, useState } from "react";
-import { getUserByEmail } from "../services/apiFacade";
+import { useState } from "react";
+
 import Logout from "../security/Logout";
 
 export default function UserProfile() {
-
     // const [user, setUser] = useState(null);
 
     const [isLoggedOut, setIsloggedOut] = useState(false);
 
-
-    useEffect(() => {
-        getUserByEmail(localStorage.getItem("email")!).then((data) => console.log(data));
-    }, []);
-
     const handleLogout = () => {
         setIsloggedOut(true);
-    }
+    };
     if (isLoggedOut) {
         return <Logout />;
     }
@@ -24,10 +18,15 @@ export default function UserProfile() {
         <div className="p-24 bg-background-kea min-h-screen">
             <div className="bg-white bg-opacity-15 p-10 rounded-lg shadow-lg">
                 <h1 className="font-bold text-2xl pb-8">User Profile</h1>
-                <p className="pb-8 text-lg">You are signed in with:</p>
-                <p className="pb-8 text-lg">Password (button) Change</p>
-                <button className="pb-8 text-lg" onClick={handleLogout}>Logout</button>
-                <p className="text-red-500 hover:text-red-700 cursor-pointer">Delete my account</p>
+                <p className="pb-8 text-lg">You are signed in with: {localStorage.getItem("email")}</p>
+                <div className="flex justify-between items-center">
+                    <p className=" text-lg">Password: ***** </p>
+                    <button className="bg-filler-kea hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">Change</button>
+                </div>
+                <button className="pb-8 pt-8 text-lg text-black-500 hover:text-red-700 cursor-pointer" onClick={handleLogout}>
+                    Logout
+                </button>
+                <p className="text-red-500 hover:text-red-700 cursor-pointer text-lg">Delete my account</p>
             </div>
         </div>
     );
