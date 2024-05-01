@@ -18,20 +18,24 @@ export default function SignUp() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser = await fetch("http://localhost:8080/api/user-with-role", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    console.log(newUser);
+    if (user.email.endsWith("kea.dk")) {
+      const newUser = await fetch("http://localhost:8080/api/user-with-role", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      console.log(newUser);
 
-    window.alert("User created");
+      window.alert("User created");
 
-    setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+    } else {
+      window.alert("Email must end with kea.dk");
+    }
   };
 
   return (
