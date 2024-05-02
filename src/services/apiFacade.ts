@@ -14,4 +14,13 @@ async function getUserByEmail(email: string) {
     }
 }
 
+async function deleteUserByEmail(email: string) {
+    if (email) {
+        return fetch(USER_URL + "/" + email, {
+            method: "DELETE",
+        }).then(handleHttpErrors);
+    }
+}
+
 export { getAllCoffee, getUserByEmail };
+export { deleteUserByEmail };
