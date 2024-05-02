@@ -1,18 +1,30 @@
 import { useState } from "react";
 
 import Logout from "../security/Logout";
+import { deleteUserByEmail } from "../services/apiFacade";
 
 export default function UserProfile() {
-    // const [user, setUser] = useState(null);
+   const email = localStorage.getItem("email");
 
     const [isLoggedOut, setIsloggedOut] = useState(false);
 
     const handleLogout = () => {
         setIsloggedOut(true);
     };
+
+    function handleDeleteAccount() {
+        if (email) {
+            deleteUserByEmail(email);
+        }
+        setIsloggedOut(true);
+    }
+
+
     if (isLoggedOut) {
         return <Logout />;
     }
+
+
 
     return (
         <div className="p-24 bg-background-kea min-h-screen">
@@ -26,7 +38,7 @@ export default function UserProfile() {
                 <button className="pb-8 pt-8 text-lg text-black-500 hover:text-red-700 cursor-pointer" onClick={handleLogout}>
                     Logout
                 </button>
-                <p className="text-red-500 hover:text-red-700 cursor-pointer text-lg">Delete my account</p>
+                <p className="text-red-500 hover:text-red-700 cursor-pointer text-lg" onClick={handleDeleteAccount}>Delete my account</p>
             </div>
         </div>
     );
