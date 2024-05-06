@@ -16,6 +16,7 @@ export default function App() {
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/settings" element={<UserProfile />} />
                 <Route path="/" element={<HomePage />} />
+                
             </Routes>
         </div>
     );
