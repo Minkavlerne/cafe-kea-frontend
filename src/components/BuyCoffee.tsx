@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import BuyMenu from "./BuyMenu";
 import { Coffee, Ticket } from "../services/entityFacade";
 import { getAllCoffee, getAllTickets } from "../services/apiFacade";
+import MyTickets from "./MyTickets";
 
 export default function BuyCoffee() {
     const [ticketsClicked, setTicketsClicked] = useState<boolean>(false);
@@ -30,8 +31,7 @@ export default function BuyCoffee() {
             {coffeeClicked && <BuyMenu title="Buy Coffee" coffees={coffees} goBack={goBack} />}
             {!ticketsClicked && !coffeeClicked && (
                 <div className="pt-14 pl-8">
-                    <h1 className="font-bold py-7 text-center">My Tickets</h1>
-                    <p className="text-center pb-[10rem]">Here you can buy coffee & tickets</p>
+                    <p className="text-center py-5">Here you can buy coffee & tickets</p>
                     <div className="flex flex-row justify-center gap-10">
                         <button onClick={() => setTicketsClicked(true)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded">
                             <LuTicket size={50} />
@@ -42,6 +42,8 @@ export default function BuyCoffee() {
                             Buy one drink
                         </button>
                     </div>
+                    <h1 className="font-bold py-7 text-center">My Tickets</h1>
+                    <MyTickets />
                 </div>
             )}
         </>
