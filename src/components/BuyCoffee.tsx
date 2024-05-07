@@ -19,10 +19,15 @@ export default function BuyCoffee() {
         });
     }, []);
 
+    function goBack() {
+        setTicketsClicked(false);
+        setCoffeeClicked(false);
+    }
+
     return (
         <>
-            {ticketsClicked && <BuyMenu title="Buy Tickets" tickets={tickets} />}
-            {coffeeClicked && <BuyMenu title="Buy Coffee" coffees={coffees} />}
+            {ticketsClicked && <BuyMenu title="Buy Tickets" tickets={tickets} goBack={goBack} />}
+            {coffeeClicked && <BuyMenu title="Buy Coffee" coffees={coffees} goBack={goBack} />}
             {!ticketsClicked && !coffeeClicked && (
                 <div className="pt-14 pl-8">
                     <h1 className="font-bold py-7 text-center">My Tickets</h1>
