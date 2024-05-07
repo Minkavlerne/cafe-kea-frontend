@@ -1,12 +1,12 @@
-import { Coffee } from "../services/entityFacade";
+import { Coffee, Ticket } from "../services/entityFacade";
 import { useState } from "react";
 import { addCoffeeToCurrentUser } from "../services/apiFacade";
 
 interface BuyMenuProps {
-  title: string;
-  coffees?: Coffee[];
-  //ticketCards?: TicketCard[];
-}
+    title: string;
+    coffees?: Coffee[];
+    tickets?: Ticket[];
+} 
 
 export default function BuyMenu(props: BuyMenuProps) {
   const [selectedCoffee, setSelectedCoffee] = useState<Coffee | null>(null);
@@ -75,6 +75,21 @@ export default function BuyMenu(props: BuyMenuProps) {
                     Yes, I'm sure
                   </button>
                 </div>
+            )}
+            {props.tickets && (
+                <div className="grid grid-cols-2 gap-4 px-8">
+                    {props.tickets.map((t) => {
+                        return (
+                            <div className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={t.id}>
+                                <h2>{t.name}</h2>
+                                <p>{t.price} kr.</p>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+        </div>
+    );
               </div>
             </div>
           </div>
