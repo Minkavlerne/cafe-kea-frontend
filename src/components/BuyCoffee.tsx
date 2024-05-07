@@ -1,23 +1,27 @@
 import { LuCoffee, LuTicket } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import BuyMenu from "./BuyMenu";
-import { Coffee } from "../services/entityFacade";
-import { getAllCoffee } from "../services/apiFacade";
+import { Coffee, Ticket } from "../services/entityFacade";
+import { getAllCoffee, getAllTickets } from "../services/apiFacade";
 
 export default function BuyCoffee() {
     const [ticketsClicked, setTicketsClicked] = useState<boolean>(false);
     const [coffeeClicked, setCoffeeClicked] = useState<boolean>(false);
     const [coffees, setCoffees] = useState<Coffee[]>([]);
+    const [tickets, setTickets] = useState<Ticket[]>([]);
 
     useEffect(() => {
         getAllCoffee().then((data) => {
             setCoffees(data);
         });
+        getAllTickets().then((data) => {
+            setTickets(data);
+        });
     }, []);
 
     return (
         <>
-            {ticketsClicked && <BuyMenu title="Buy Tickets" />}
+            {ticketsClicked && <BuyMenu title="Buy Tickets" tickets={tickets} />}
             {coffeeClicked && <BuyMenu title="Buy Coffee" coffees={coffees} />}
             {!ticketsClicked && !coffeeClicked && (
                 <div className="pt-14 pl-8">
