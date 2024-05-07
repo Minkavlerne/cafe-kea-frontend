@@ -39,4 +39,18 @@ async function getAllTickets() {
     return fetch(TICKET_URL).then(handleHttpErrors);
 }
 
-export { getAllCoffee, getUserByEmail, changePassword, deleteUserByEmail, getAllTickets };
+async function addCoffeeToCurrentUser(coffeeId: number) {
+  const email = localStorage.getItem("email");
+  console.log(email);
+  if (email) {
+    return fetch(`${USER_URL}/${email}/coffee`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(coffeeId),
+    }).then(handleHttpErrors);
+  }
+}
+
+export { getAllCoffee, getUserByEmail, changePassword, deleteUserByEmail, addCoffeeToCurrentUser, getAllTickets };
