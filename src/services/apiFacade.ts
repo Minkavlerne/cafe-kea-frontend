@@ -11,6 +11,7 @@ async function getAllCoffee() {
 
 async function getUserByEmail(email: string) {
     if (email) {
+        console.log(email);
         return fetch(USER_URL + "/" + email).then(handleHttpErrors);
     }
 }
