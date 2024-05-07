@@ -1,11 +1,13 @@
 import { Coffee, Ticket } from "../services/entityFacade";
 import { useState } from "react";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { addCoffeeToCurrentUser, addTicketToCurrentUser } from "../services/apiFacade";
 
 interface BuyMenuProps {
     title: string;
     coffees?: Coffee[];
     tickets?: Ticket[];
+    goBack: () => void;
 }
 
 export default function BuyMenu(props: BuyMenuProps) {
@@ -40,7 +42,10 @@ export default function BuyMenu(props: BuyMenuProps) {
     return (
         <>
             <div className="pt-20">
-                <h1 className="text-center font-bold pt-2 pb-10 text-xl">{props.title}</h1>
+                <div className="flex pt-4">
+                    <FaArrowAltCircleLeft size={35} className="grow-0 ml-8" onClick={props.goBack} />
+                    <h1 className="text-center font-bold pt-2 pb-10 text-xl grow">{props.title}</h1>
+                </div>
                 {props.coffees && (
                     <div className="grid grid-cols-4 gap-4 px-8">
                         {props.coffees.map((c) => {
