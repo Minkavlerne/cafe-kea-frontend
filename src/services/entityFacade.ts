@@ -15,6 +15,7 @@ export interface CoffeeDto {
     coffeeDto: Coffee;
     customerId: number;
     createdAt: string;
+    used: boolean;
 }
 
 export interface TicketDto {
@@ -23,6 +24,7 @@ export interface TicketDto {
     customerId: number;
     createdAt: string;
     quantity: number;
+    used: boolean;
 }
 
 export interface User {
