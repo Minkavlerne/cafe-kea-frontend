@@ -67,4 +67,26 @@ async function addTicketToCurrentUser(ticketId: number) {
     }
 }
 
-export { getAllCoffee, getUserByEmail, changePassword, deleteUserByEmail, addCoffeeToCurrentUser, getAllTickets, addTicketToCurrentUser };
+async function removeQuantityFromTicket(email: string, ticketId: string) {
+    if (email) {
+        return fetch(`${USER_URL}/${email}/ticket/${ticketId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(handleHttpErrors);
+    }
+}
+
+async function removeCoffee(email: string, coffeeId: string) {
+    if (email) {
+        return fetch(`${USER_URL}/${email}/coffee/${coffeeId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(handleHttpErrors);
+    }
+}
+
+export { getAllCoffee, getUserByEmail, changePassword, deleteUserByEmail, addCoffeeToCurrentUser, getAllTickets, addTicketToCurrentUser, removeQuantityFromTicket, removeCoffee };

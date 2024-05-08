@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import { getUserByEmail } from "../services/apiFacade";
-import { Coffee, Ticket } from "../services/entityFacade";
+import { getUserByEmail, removeCoffee, removeQuantityFromTicket } from "../services/apiFacade";
+import { CoffeeDto, TicketDto } from "../services/entityFacade";
 
 export default function MyTickets() {
     const email = localStorage.getItem("email");
-    const [tickets, setTickets] = useState<Ticket[]>([]);
-    const [coffees, setCoffees] = useState<Coffee[]>([]);
+    const [tickets, setTickets] = useState<TicketDto[]>([]);
+    const [coffees, setCoffees] = useState<CoffeeDto[]>([]);
     const [showModal, setShowModal] = useState<boolean>(false);
-    //const [selectedItem, setSelectedItem] = useState<Coffee | Ticket | null>(null);
+    //const [selectedItem, setSelectedItem] = useState<CoffeeDto | TicketDto | null>(null);
+    const [selectedTicket, setSelectedTicket] = useState<TicketDto | null>(null);
+    const [selectedCoffee, setSelectedCoffee] = useState<CoffeeDto | null>(null);
 
     useEffect(() => {
         if (email) {
@@ -18,10 +20,28 @@ export default function MyTickets() {
         }
     }, [email]);
 
-    function handleModalClick() {
+    function handleModalClick(ticket: TicketDto | null, coffee: CoffeeDto | null) {
         setShowModal(true);
+        if (ticket) {
+            setSelectedTicket(ticket);
+            console.log(ticket);
+        }
+        if (coffee) {
+            setSelectedCoffee(coffee);
+            console.log(coffee);
+        }
     }
-    function handleConfirmClick() {
+    async function handleConfirmClick() {
+        if (email) {
+            if (selectedTicket) {
+                await removeQuantityFromTicket(email, selectedTicket.id.toString());
+                setTickets(tickets.map((t) => (t.id === selectedTicket.id ? { ...t, quantity: t.quantity - 1 } : t)).filter((t) => t.quantity > 0));
+            }
+            if (selectedCoffee) {
+                await removeCoffee(email, selectedCoffee.id.toString());
+                setCoffees(coffees.filter((c) => c !== selectedCoffee));
+            }
+        }
         setShowModal(false);
     }
 
@@ -32,12 +52,15 @@ export default function MyTickets() {
                     <h1 className="text-center pb-2 font-bold">Ticket purchases</h1>
                     <div className="grid grid-cols-2 gap-4 px-8">
                         {tickets.map((t) => {
-                            return (
-                                <div onClick={() => handleModalClick()} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={t.id}>
-                                    <h2>{t.name}</h2>
-                                    <p>{t.price} kr.</p>
-                                </div>
-                            );
+                            if (!t.used) {
+                                return (
+                                    <div onClick={() => handleModalClick(t, null)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={t.id}>
+                                        <h2>{t.ticketDto.name}</h2>
+                                        <p>{t.ticketDto.price} kr.</p>
+                                        <p>Quantity: {t.quantity}</p>
+                                    </div>
+                                );
+                            }
                         })}
                     </div>
                 </div>
@@ -45,12 +68,14 @@ export default function MyTickets() {
                     <h1 className="text-center pb-2 font-bold">Coffee purchases</h1>
                     <div className="grid grid-cols-2 gap-4 px-8">
                         {coffees.map((c) => {
-                            return (
-                                <div onClick={() => handleModalClick()} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={c.id}>
-                                    <h2>{c.name}</h2>
-                                    <p>{c.price} kr.</p>
-                                </div>
-                            );
+                            if (!c.used) {
+                                return (
+                                    <div onClick={() => handleModalClick(null, c)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={c.id}>
+                                        <h2>{c.coffeeDto.name}</h2>
+                                        <p>{c.coffeeDto.price} kr.</p>
+                                    </div>
+                                );
+                            }
                         })}
                     </div>
                 </div>
@@ -68,12 +93,12 @@ export default function MyTickets() {
                                 >
                                     <span className="sr-only">Close modal</span>
                                 </button>
-                                <h2 className="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to buy for</h2>
+                                <h2 className="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to use this {selectedTicket?.ticketDto.name || selectedCoffee?.coffeeDto.name} </h2>
                                 <div className="flex justify-center items-center space-x-4">
                                     <button
                                         type="button"
                                         className="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={() => (setSelectedTicket(null), setSelectedCoffee(null), setShowModal(false))}
                                     >
                                         No, cancel
                                     </button>
