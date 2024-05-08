@@ -26,3 +26,8 @@ export interface TicketDto {
     quantity: number;
     used: boolean;
 }
+
+export interface User {
+    email: string;
+    password: string;
+}
