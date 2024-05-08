@@ -31,7 +31,7 @@ return (
               <li key={coffee.id} className="mb-2 border-b border-gray-200 py-4">
                 <p className="font-semibold text-lg">{coffee.coffeeDto.name}</p>
                 <p className="text-gray-600">{coffee.coffeeDto.price} kr</p>
-                <p className="text-sm text-gray-500">Dato: {formattedDate}</p>
+                <p className="text-sm text-gray-500">Purchase date: {formattedDate}</p>
               </li>
             );
           })}
@@ -47,7 +47,7 @@ return (
               <li key={ticket.id} className="mb-2 border-b border-gray-200 py-4">
                 <p className="font-semibold text-lg">{ticket.ticketDto.name}</p>
                 <p className="text-gray-600">{ticket.ticketDto.price} kr</p>
-                <p className="text-sm text-gray-500">Dato: {formattedDate}</p>
+                <p className="text-sm text-gray-500">Purchase date: {formattedDate}</p>
               </li>
             );
           })}
