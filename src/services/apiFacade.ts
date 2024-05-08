@@ -1,4 +1,5 @@
 import { API_URL } from "../settings";
+import { User } from "./entityFacade";
 import { handleHttpErrors } from "./fetchUtils";
 
 const COFFEE_URL = API_URL + "api/coffee";
@@ -36,6 +37,16 @@ async function changePassword(password: string) {
     }
 }
 
+async function addUser(user: User) {
+    return fetch(USER_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+    }).then(handleHttpErrors);
+}
+
 async function getAllTickets() {
     return fetch(TICKET_URL).then(handleHttpErrors);
 }
@@ -67,4 +78,4 @@ async function addTicketToCurrentUser(ticketId: number) {
     }
 }
 
-export { getAllCoffee, getUserByEmail, changePassword, deleteUserByEmail, addCoffeeToCurrentUser, getAllTickets, addTicketToCurrentUser };
+export { addUser, getAllCoffee, getUserByEmail, changePassword, deleteUserByEmail, addCoffeeToCurrentUser, getAllTickets, addTicketToCurrentUser };
