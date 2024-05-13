@@ -35,14 +35,18 @@ export default function Stats() {
   }, [email]);
 
   return (
-    <div className="bg-background-kea">
+    <div className="">
       <div className="bg-background-kea text-text-kea p-20">
-        <h1>Hello, {email}!</h1>
-        <h2>Here are your stats:</h2>
-        <div className="bg-background-kea fixed bottom-0 right-0 m-4 bg-white p-4 rounded shadow-lg">
-          <li>You have purchased {coffeePurchased} cups of coffee, all time</li>
-          <li>You have purchased {coffeePurchasedThisMonth} cups of coffee this month</li>
-          <li>You have purchased {coffeePurchasedThisSemester} this semester</li>
+        <h1 className="text-center text-3xl">Hello, {email}!</h1>
+        <h2 className="text-center text-1xl">Here are your stats:</h2>
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 right-1 m-4 bg-white p-4 rounded-lg shadow-md">
+          <ul className="space-y-2 text-gray-700">
+            <li>You have purchased {coffeePurchased} cups of coffee, all time</li>
+            <li>You have purchased {coffeePurchasedThisMonth} cups of coffee this month</li>
+            <li>You have purchased {coffeePurchasedThisSemester} this semester</li>
+          </ul>
+          <br></br>
+          <p>Thank you, come again!</p>
         </div>
       </div>
     </div>

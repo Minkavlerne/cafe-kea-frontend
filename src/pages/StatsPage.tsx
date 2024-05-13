@@ -2,7 +2,7 @@ import Stats from "../components/Stats";
 
 export default function StatsPage() {
   return (
-    <div>
+    <div className="bg-background-kea min-h-screen">
       <Stats />
     </div>
   );
