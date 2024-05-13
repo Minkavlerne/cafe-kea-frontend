@@ -54,9 +54,8 @@ export default function MyTickets() {
                         {tickets.map((t) => {
                             if (!t.used) {
                                 return (
-                                    <div onClick={() => handleModalClick(t, null)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={t.id}>
+                                    <div onClick={() => handleModalClick(t, null)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 rounded" key={t.id}>
                                         <h2>{t.ticketDto.name}</h2>
-                                        <p>{t.ticketDto.price} kr.</p>
                                         <p>Quantity: {t.quantity}</p>
                                     </div>
                                 );
@@ -70,9 +69,8 @@ export default function MyTickets() {
                         {coffees.map((c) => {
                             if (!c.used) {
                                 return (
-                                    <div onClick={() => handleModalClick(null, c)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={c.id}>
+                                    <div onClick={() => handleModalClick(null, c)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 rounded" key={c.id}>
                                         <h2>{c.coffeeDto.name}</h2>
-                                        <p>{c.coffeeDto.price} kr.</p>
                                     </div>
                                 );
                             }
@@ -104,7 +102,7 @@ export default function MyTickets() {
                                     </button>
                                     <button
                                         type="button"
-                                        className="py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-900"
+                                        className="py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-[#A37F66] focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-900"
                                         onClick={handleConfirmClick}
                                     >
                                         Yes, I'm sure

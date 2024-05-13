@@ -33,11 +33,11 @@ export default function BuyCoffee() {
                 <div className="pt-14 pl-8">
                     <p className="text-center py-5">Here you can buy coffee & tickets</p>
                     <div className="flex flex-row justify-center gap-10">
-                        <button onClick={() => setTicketsClicked(true)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded">
+                        <button onClick={() => setTicketsClicked(true)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 rounded">
                             <LuTicket size={50} />
                             Buy tickets
                         </button>
-                        <button onClick={() => setCoffeeClicked(true)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded">
+                        <button onClick={() => setCoffeeClicked(true)} className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 rounded">
                             <LuCoffee size={50} />
                             Buy one drink
                         </button>

@@ -53,7 +53,7 @@ export default function UserProfile() {
                             <div>
                                 <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                                <button className="bg-filler-kea hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4" onClick={handleSubmit}>
+                                <button className="bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 px-4 rounded ml-4" onClick={handleSubmit}>
                                     Save
                                 </button>
                                 <button className="bg-filler-kea hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4" onClick={() => setChangeClicked(false)}>

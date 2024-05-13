@@ -50,7 +50,7 @@ export default function BuyMenu(props: BuyMenuProps) {
                     <div className="grid grid-cols-4 gap-4 px-8">
                         {props.coffees.map((c) => {
                             return (
-                                <div className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={c.id} onClick={() => handleCoffeeClick(c)}>
+                                <div className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 rounded" key={c.id} onClick={() => handleCoffeeClick(c)}>
                                     <h2>{c.name}</h2>
                                     <p>{c.price} kr.</p>
                                 </div>
@@ -62,7 +62,7 @@ export default function BuyMenu(props: BuyMenuProps) {
                     <div className="grid grid-cols-2 gap-4 px-8">
                         {props.tickets.map((t) => {
                             return (
-                                <div className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-green-700 text-white font-bold py-2 rounded" key={t.id} onClick={() => handleTicketClick(t)}>
+                                <div className="flex flex-col items-center justify-center px-5 bg-filler-kea hover:bg-[#A37F66] text-white font-bold py-2 rounded" key={t.id} onClick={() => handleTicketClick(t)}>
                                     <h2>{t.name}</h2>
                                     <p>{t.price} kr.</p>
                                 </div>
@@ -98,7 +98,7 @@ export default function BuyMenu(props: BuyMenuProps) {
                                     </button>
                                     <button
                                         type="button"
-                                        className="py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-900"
+                                        className="py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-[#A37F66] focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-900"
                                         onClick={handleConfirmClick}
                                     >
                                         Yes, I'm sure
