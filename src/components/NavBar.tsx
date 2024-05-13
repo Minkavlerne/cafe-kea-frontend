@@ -1,29 +1,46 @@
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
+import { IoMdHome } from "react-icons/io";
+import { useEffect, useState } from "react";
+import ActiveNavLink from "./ActiveNavLink";
 
 export default function NavBar() {
+    const [isScrolled, setIsScrolled] = useState(false);
     const auth = useAuth();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const show = window.scrollY > 20;
+            if (show !== isScrolled) {
+                setIsScrolled(show);
+            }
+        };
+
+        document.addEventListener("scroll", handleScroll);
+        return () => {
+            document.removeEventListener("scroll", handleScroll);
+        };
+    }, [isScrolled]);
+
     return (
         <>
-            <nav className="bg-white shadow w-screen h-[70px] z-10 fixed">
-                <ul className="flex justify-around py-4">
+            <nav className={`${isScrolled ? "bg-[#E1BB80]" : "bg-transparent"} transition-colors duration-250 w-screen h-[70px] z-10 fixed`}>
+                <ul className="flex items-center justify-around py-4">
                     {/* Not logged in navbar */}
                     {!auth.isLoggedIn() && (
                         <>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/volunteer">
-                                    Become Volunteer
-                                </NavLink>
+                                <ActiveNavLink to="/">
+                                    <IoMdHome size={40} />
+                                </ActiveNavLink>
                             </li>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/login">
-                                    Login
-                                </NavLink>
+                                <ActiveNavLink to="/volunteer">Become Volunteer</ActiveNavLink>
                             </li>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/signup">
-                                    Signup
-                                </NavLink>
+                                <ActiveNavLink to="/login">Login</ActiveNavLink>
+                            </li>
+                            <li>
+                                <ActiveNavLink to="/signup">Signup</ActiveNavLink>
                             </li>
                         </>
                     )}
@@ -32,24 +49,16 @@ export default function NavBar() {
                     {auth.isLoggedIn() && (
                         <>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/">
-                                    Tickets
-                                </NavLink>
+                                <ActiveNavLink to="/">Tickets</ActiveNavLink>
                             </li>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/receipts">
-                                    Receipts
-                                </NavLink>
+                                <ActiveNavLink to="/receipts">Receipts</ActiveNavLink>
                             </li>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/stats">
-                                    Stats
-                                </NavLink>
+                                <ActiveNavLink to="/stats">Stats</ActiveNavLink>
                             </li>
                             <li>
-                                <NavLink className="text-gray-700 text-lg hover:text-blue-600" to="/settings">
-                                    Settings
-                                </NavLink>
+                                <ActiveNavLink to="/settings">Settings</ActiveNavLink>
                             </li>
                         </>
                     )}
