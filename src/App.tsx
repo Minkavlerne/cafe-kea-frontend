@@ -6,20 +6,21 @@ import LoginPage from "./components/Login";
 import UserProfile from "./components/UserProfile";
 import Logout from "./security/Logout";
 import ReceiptsPage from "./pages/ReceiptsPage";
+import StatsPage from "./pages/StatsPage";
 
 export default function App() {
-    return (
-        <div>
-            <Navbar />
-            <Routes>
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/logout" element={<Logout />} />
-                <Route path="/settings" element={<UserProfile />} />
-                <Route path="/" element={<HomePage />} />
-                <Route path="/receipts" element={<ReceiptsPage/>} />
-                
-            </Routes>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/settings" element={<UserProfile />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/receipts" element={<ReceiptsPage />} />
+        <Route path="/stats" element={<StatsPage />} />
+      </Routes>
+    </div>
+  );
 }
