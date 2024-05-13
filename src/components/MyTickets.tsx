@@ -91,7 +91,7 @@ export default function MyTickets() {
                                 >
                                     <span className="sr-only">Close modal</span>
                                 </button>
-                                <h2 className="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to use this {selectedTicket?.ticketDto.name || selectedCoffee?.coffeeDto.name} </h2>
+                                <h2 className="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to use {"1 stamp from " + selectedTicket?.ticketDto.name || selectedCoffee?.coffeeDto.name} </h2>
                                 <div className="flex justify-center items-center space-x-4">
                                     <button
                                         type="button"
